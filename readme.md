@@ -1,6 +1,6 @@
 # Farvekoordineret skema for mitstudie.au.dk extension
 
-Programmet er en udvidelse (extension) til Chrome og Firefox, der gør det nemmere at se dit skema på [text](https://mitstudie.au.dk)
+Programmet er en udvidelse (extension) til Chrome og Firefox, der gør det nemmere at se dit skema på [mitstudie.au.dk](https://mitstudie.au.dk)
 
 ## Download guide
 
