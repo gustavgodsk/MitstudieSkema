@@ -1,4 +1,4 @@
-# Farvekoordineret skema for Mitstudie
+# Farvekoordineret skema til Mitstudie
 
 Programmet er en udvidelse (extension) til Chrome og Firefox, der gør det nemmere at se dit skema på [mitstudie.au.dk](https://mitstudie.au.dk)
 
