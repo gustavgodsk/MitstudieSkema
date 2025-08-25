@@ -1,0 +1,14 @@
+{
+  "manifest_version": 3,
+  "name": "Mitstudie Skema+",
+  "version": "1.0",
+  "description": "Farvekoordineret skema for Mitstudie",
+  "content_scripts": [
+    {
+      "js": ["config.js", "script.js"],
+      "matches": [
+        "https://mitstudie.au.dk/*"
+      ]
+    }
+  ]
+}
