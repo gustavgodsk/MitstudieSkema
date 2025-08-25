@@ -2,6 +2,8 @@
 
 Programmet er en udvidelse (extension) til Chrome og Firefox, der gør det nemmere at se dit skema på [mitstudie.au.dk](https://mitstudie.au.dk)
 
+<img width="1893" height="1035" alt="image" src="https://github.com/user-attachments/assets/cb55f845-f577-43ad-8d6c-8ff53c0f8c5f" />
+
 ## Download guide
 
 Download filerne og gem i mappe
