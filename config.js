@@ -11,5 +11,6 @@ const config = {
         "#A5BCFF",
         "#FCB9C2",
         "#FDEE95",
-    ]
+    ],
+    current_day_color: ["#a8b5b0"]
 }
