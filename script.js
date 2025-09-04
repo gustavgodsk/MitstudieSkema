@@ -1,4 +1,5 @@
 const subjects = [];
+let current_date = null;
 
 function colorButton(button, color){
     button.style.backgroundImage = `linear-gradient(to right, transparent 0%, transparent 6px, ${color} 6px)`;
@@ -73,6 +74,8 @@ function callback(mutationList){
                 dayEvents.forEach(element => {
                     addEvent(element);
             })
+
+            colorToday(mutation.target);
         }
         // Ved page load (hele timetable bliver lavet på én gang)
         else if (mutation.addedNodes.length > 0
@@ -81,9 +84,38 @@ function callback(mutationList){
             dayEvents.forEach(element => {
                 addEvent(element)
             });
-
         }
         
+        if (mutation.addedNodes.length > 0
+            && mutation.addedNodes[0].classList?.contains("timetable")){
+            
+            let table = mutation.addedNodes[0];
+            colorToday(table);
+        }else if (mutation.target === "timetable__week" 
+            && mutation.addedNodes[0].classList.contains("timetable__singleday-events")){
+            
+            let table = document.querySelectorAll(".timetable__week");
+            colorToday(table);
+        }
+    }
+}
+
+function colorToday(days){
+    let all_days = days.querySelectorAll('.timetable__singleday-events');
+    let all_titles = days.querySelectorAll('.timetable__day-header');
+
+    const d = new Date();
+    let day = d.getDay();
+    
+    if (day>0 && day<6){
+        if (current_date==null){
+            current_date=all_titles[day-1].innerHTML;
+            console.log(current_date);
+        }
+        if(all_titles[day-1].innerHTML == current_date){
+            let todays_day = all_days[day-1];
+            todays_day.style.backgroundColor = config.current_day_color[0];
+        }
     }
 }
 
