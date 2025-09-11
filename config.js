@@ -4,13 +4,21 @@ const config = {
         par: {
             "Introduktion til matematik og optimering": "IMO",
             "Algoritmer og datastrukturer": "ADS",
-            "Introduktion til programmering": "InProg"
+            "Introduktion til programmering": "IntProg"
         }
     },
-    colors: [
+    colors: {
+      // imo, ads osv. farver
+      events: [
         "#A5BCFF",
         "#FCB9C2",
         "#FDEE95",
-    ],
-    current_day_color: ["#a8b5b0"]
+      ],
+      event_type: [
+        { text: 'Forelæsning', color:'red' },
+        { text: 'Holdundervisning', color:'orange' },
+        { text: 'Praktisk', color:'green' },
+      ]
+    },
+    current_day_color: "#a8b5b0"
 }

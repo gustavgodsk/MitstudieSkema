@@ -2,7 +2,7 @@ const subjects = [];
 let current_date = null;
 
 function colorButton(button, color){
-    button.style.backgroundImage = `linear-gradient(to right, transparent 0%, transparent 6px, ${color} 6px)`;
+    button.style.background = color;
 }
 
 function addEvent(event){
@@ -38,7 +38,7 @@ function addEvent(event){
 }
 
 function getNewColor() {
-    for (const color of config.colors) {
+    for (const color of config.colors.events) {
         // Tjek om farve allerede er brugt
         const isUsed = subjects.some(subject => subject.color === color);
         if (!isUsed) {
@@ -65,7 +65,7 @@ function callback(mutationList){
             && mutation.addedNodes.length > 0){
             const event = mutation.addedNodes[0];
             addEvent(event);
-        } 
+        }
         // Hvis data for ugen allerede er fetched
         else if (mutation.target.className === "timetable__week" 
             && mutation.addedNodes.length > 0 
@@ -85,15 +85,15 @@ function callback(mutationList){
                 addEvent(element)
             });
         }
-        
+
         if (mutation.addedNodes.length > 0
             && mutation.addedNodes[0].classList?.contains("timetable")){
-            
+
             let table = mutation.addedNodes[0];
             colorToday(table);
         }else if (mutation.target === "timetable__week" 
             && mutation.addedNodes[0].classList.contains("timetable__singleday-events")){
-            
+
             let table = document.querySelectorAll(".timetable__week");
             colorToday(table);
         }
@@ -106,7 +106,7 @@ function colorToday(days){
 
     const d = new Date();
     let day = d.getDay();
-    
+
     if (day>0 && day<6){
         if (current_date==null){
             current_date=all_titles[day-1].innerHTML;
@@ -114,7 +114,7 @@ function colorToday(days){
         }
         if(all_titles[day-1].innerHTML == current_date){
             let todays_day = all_days[day-1];
-            todays_day.style.backgroundColor = config.current_day_color[0];
+            todays_day.style.backgroundColor = config.current_day_color;
         }
     }
 }
@@ -130,10 +130,21 @@ function setup(){
 
     const style = document.createElement('style');
     style.type = 'text/css';
-    style.innerHTML = '' +
-        '.Forelæsning::before { background-color: red !important; }' +
-        '.Holdundervisning::before { background-color: orange !important; }' +
-        '.Praktisk::before { background-color: green !important; ';
+    style.innerHTML = config.colors.event_type
+        .map(el =>
+          `.${el.text}::before { background-color: ${el.color} !important; }`)
+        .join("\n")
+    style.innerHTML += `
+    .timetable .event {
+        /* fjern grøn ting i hjørner */
+        --transparent: none !important;
+        --transparent-hover: none !important;
+    }
+    .timetable .event__details {
+        /* gør text helt sort for bedre læsbarhed */
+        color: var(--color-foreground);
+    }
+    `
     document.head.appendChild(style);
 }
 
