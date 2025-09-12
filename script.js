@@ -76,7 +76,7 @@ const add_toggle_input = ()  => {
     checkbox.setAttribute("type", "checkbox")
     checkbox.setAttribute("id", "hide_praktisk")
     checkbox.setAttribute("name", "hide_praktisk")
-    checkbox.setAttribute("checked", is_hidden())
+    checkbox.checked = is_hidden()
     checkbox.addEventListener("change", (el) => {
         localStorage.setItem("hide_praktisk", el.explicitOriginalTarget.checked);
         hide_events("Praktisk", el.explicitOriginalTarget.checked)
@@ -102,7 +102,7 @@ function callback(mutationList){
             hide_events("Praktisk", is_hidden(), event)
         }
         // Hvis data for ugen allerede er fetched
-        else if (mutation.target.className === "timetable__week" 
+        else if (mutation.target.className === "timetable__week"
             && mutation.addedNodes.length > 0
             && mutation.addedNodes[0].classList.contains("timetable__singleday-events")){
             const dayEvents = mutation.addedNodes[0].querySelectorAll(".event");
@@ -130,7 +130,7 @@ function callback(mutationList){
 
             let table = mutation.addedNodes[0];
             colorToday(table);
-        }else if (mutation.target === "timetable__week" 
+        }else if (mutation.target === "timetable__week"
             && mutation.addedNodes[0].classList.contains("timetable__singleday-events")){
 
             let table = document.querySelectorAll(".timetable__week");
