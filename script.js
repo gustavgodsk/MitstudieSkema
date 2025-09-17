@@ -79,11 +79,13 @@ const add_toggle_input = ()  => {
     checkbox.setAttribute("name", "hide_praktisk")
     checkbox.checked = is_hidden()
     checkbox.addEventListener("change", (el) => {
-        localStorage.setItem("hide_praktisk", el.explicitOriginalTarget.checked);
-        hide_events("Praktisk", el.explicitOriginalTarget.checked)
+        localStorage.setItem("hide_praktisk", el.target.checked);
+        hide_events("Praktisk", el.target.checked)
     });
 
     label = document.createElement("label")
+    label.style.userSelect = "none";
+    label.style.marginLeft = "2px"
     label.setAttribute("for", "hide_praktisk")
     label.innerHTML = "Skjul praktisk"
 
