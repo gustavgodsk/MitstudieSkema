@@ -198,8 +198,8 @@ function updateLine(today){
         today.appendChild(lineElement);
     }
 
-    const getTopPercentage = calculateTopPercentage();
-    //const getTopPercentage = 0.5;
+    //const getTopPercentage = calculateTopPercentage();
+    const getTopPercentage = 0.5;
     lineElement.style.top = getTopPercentage * timetableHeight + "px";
 
 }
