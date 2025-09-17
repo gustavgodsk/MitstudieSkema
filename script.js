@@ -6,7 +6,14 @@ function colorButton(button, color){
 }
 
 function addEvent(event){
+    //remove praktisk event if enabled in config
+    if (config.remove_praktisk){
+        if (event.querySelectorAll(".event__details__item--form-and-group")[0].textContent === "Praktisk"){
+            event.style.setProperty("display", "none", "important");
+        }
+    }
     const button = event.querySelector("button");
+    if (button == null) return;
     const eventTitle = button.querySelector("h4").textContent;
     let subject;
     const existingSubject = subjects.find(node => node.eventTitle === eventTitle);
@@ -148,6 +155,7 @@ function callback(mutationList){
     }
 }
 
+let todays_day = null;
 function colorToday(days){
     let all_days = days.querySelectorAll('.timetable__singleday-events');
     let all_titles = days.querySelectorAll('.timetable__day-header');
@@ -155,16 +163,58 @@ function colorToday(days){
     const d = new Date();
     let day = d.getDay();
 
+    if (lineElement !== null){
+        lineElement.remove();
+        lineElement = null;
+    }
     if (day>0 && day<6){
         if (current_date==null){
             current_date=all_titles[day-1].innerHTML;
-            console.log(current_date);
         }
         if(all_titles[day-1].innerHTML == current_date){
             let todays_day = all_days[day-1];
             todays_day.style.backgroundColor = config.current_day_color;
+            updateLine(todays_day)
         }
     }
+    
+}
+
+let timetableHeight = 0;
+let lineElement = null;
+
+function updateLine(today){
+    if (today == null) return;
+    timetableHeight = today.clientHeight;
+    if (lineElement == null){
+        lineElement = document.createElement("div");
+        lineElement.style.setProperty("position", "absolute", "important");
+        lineElement.style.height = "5px";
+        lineElement.style.width = "100%";
+        lineElement.style.zIndex = "9999";
+        lineElement.style.backgroundColor = config.line_color;
+        lineElement.style.pointerEvents = "none";
+        today.style.position = "relative";
+        today.appendChild(lineElement);
+    }
+
+    const getTopPercentage = calculateTopPercentage();
+    //const getTopPercentage = 0.5;
+    lineElement.style.top = getTopPercentage * timetableHeight + "px";
+
+}
+
+function calculateTopPercentage(){
+    const date = new Date();
+    const hours = date.getHours();
+    const minutes = date.getMinutes();
+    if (8 < hours < 19){
+        let hour = hours - 8;
+        let minutesToHours = minutes / 60;
+        let hourPercentage = (hour + minutesToHours) / 11;
+        return hourPercentage;
+    }
+    return 100;
 }
 
 const observer = new MutationObserver(callback)

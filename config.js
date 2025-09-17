@@ -21,4 +21,5 @@ const config = {
       ]
     },
     current_day_color: "#a8b5b0"
+    line_color: "#0E79B2cc",
 }

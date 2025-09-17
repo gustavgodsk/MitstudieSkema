@@ -23,4 +23,7 @@ Download filerne og gem i mappe
 
 ## Tilpasning
 
-I filen *config.js* kan du ændre farverne og redigere, slette eller tilføje nye forkortelser samt slå dem til/fra.
+I filen *config.js* kan du:
+* Ændre farver
+* Redigere, slette eller tilføje forkortelser og slå dem til/fra
+* Vælge om praktiske events skal vises eller ej
