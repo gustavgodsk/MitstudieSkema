@@ -8,7 +8,7 @@ function colorButton(button, color){
 function addEvent(event){
     //remove praktisk event if enabled in config
     if (config.remove_praktisk){
-        if (event.querySelectorAll(".event__details__item--form-and-group")[0].textContent === "Praktisk"){
+        if (event.querySelectorAll(".event__details__item--form-and-group")[0]?.textContent === "Praktisk"){
             event.style.setProperty("display", "none", "important");
         }
     }
@@ -149,8 +149,7 @@ function updateLine(today){
         today.appendChild(lineElement);
     }
 
-    //const getTopPercentage = calculateTopPercentage();
-    const getTopPercentage = 0.5;
+    const getTopPercentage = calculateTopPercentage();
     lineElement.style.top = getTopPercentage * timetableHeight + "px";
 
 }
