@@ -1,5 +1,12 @@
 {
-  "manifest_version": 3,
+  "browser_specific_settings": {
+  "gecko": {
+    "id": "@MitStudieFarveSkema",
+    "strict_min_version": "58.0"
+  }
+},
+  "manifest_version": 3.0,
+  "id": "@MitStudieFarveSkema",
   "name": "Mitstudie Skema+",
   "version": "1.0",
   "description": "Farvekoordineret skema for Mitstudie",

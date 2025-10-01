@@ -87,7 +87,7 @@ const add_toggle_input = ()  => {
     label.style.userSelect = "none";
     label.style.marginLeft = "2px"
     label.setAttribute("for", "hide_praktisk")
-    label.innerHTML = "Skjul praktisk"
+    label.textContent = "Skjul praktisk"
 
     hide_events_parent.appendChild(checkbox)
     hide_events_parent.appendChild(label)
@@ -165,9 +165,9 @@ function colorToday(days){
     }
     if (day>0 && day<6){
         if (current_date==null){
-            current_date=all_titles[day-1].innerHTML;
+            current_date=all_titles[day-1].textContent;
         }
-        if(all_titles[day-1].innerHTML == current_date){
+        if(all_titles[day-1].textContent == current_date){
             let todays_day = all_days[day-1];
             todays_day.style.backgroundColor = config.current_day_color;
             updateLine(todays_day)
