@@ -1,0 +1,154 @@
+[33mcommit 2785658e37c928eb0207be66f596523f5b1b38ae[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m)[m
+Author: gustavgodsk <gustavgodsk@gmail.com>
+Date:   Wed Sep 17 13:57:34 2025 +0200
+
+    bug fixes for chrome
+
+[33mcommit 423eb7a6dc98c9bc958bc923f146998ea211e5ed[m
+Merge: 82dfc82 b0ecc43
+Author: gustavgodsk <80204659+gustavgodsk@users.noreply.github.com>
+Date:   Wed Sep 17 13:48:12 2025 +0200
+
+    Merge pull request #3 from codemaster330/QoL
+    
+    QoL -- ny
+
+[33mcommit b0ecc4314f4bf768bcad101c8c80920521bcac3b[m
+Author: sofus <sofus.c@icloud.com>
+Date:   Wed Sep 17 13:00:13 2025 +0200
+
+    fixed
+
+[33mcommit 6680a2c3d893837aa9a631bdffcdd70ed749cd5b[m
+Merge: c23717f 82dfc82
+Author: codemaster330 <120597519+codemaster330@users.noreply.github.com>
+Date:   Wed Sep 17 12:55:56 2025 +0200
+
+    Merge branch 'gustavgodsk:main' into QoL
+
+[33mcommit 82dfc82654021b60bb78e71a74fda813537ff11c[m
+Author: gustavgodsk <gustavgodsk@gmail.com>
+Date:   Wed Sep 17 12:54:12 2025 +0200
+
+    STABLE VERSION SOFUS!
+
+[33mcommit c23717f907faa3592b4384451f981c3a7f391c36[m
+Merge: 6d6545f f2062a0
+Author: codemaster330 <120597519+codemaster330@users.noreply.github.com>
+Date:   Wed Sep 17 12:50:33 2025 +0200
+
+    Merge pull request #1 from gustavgodsk/main
+    
+    Revert "removed dev remnants"
+
+[33mcommit f2062a059f76389a8645dd18e02634b38993f2de[m
+Author: gustavgodsk <gustavgodsk@gmail.com>
+Date:   Wed Sep 17 12:23:02 2025 +0200
+
+    Revert "removed dev remnants"
+    
+    This reverts commit 516fca3e99cf6df3fab7f95a0b1afa42a473d3a4.
+
+[33mcommit 6d6545fb1e48163b4e431e1515a807335f8e62ad[m
+Merge: 9c51a22 516fca3
+Author: gustavgodsk <80204659+gustavgodsk@users.noreply.github.com>
+Date:   Wed Sep 17 12:02:09 2025 +0200
+
+    Merge branch 'main' into QoL
+
+[33mcommit 9c51a22efe37e6e3ec6baea6a6b3ab3b813c0177[m
+Author: sofus <sofus.c@icloud.com>
+Date:   Fri Sep 12 09:09:33 2025 +0200
+
+    fix checkbox altid checked
+
+[33mcommit 516fca3e99cf6df3fab7f95a0b1afa42a473d3a4[m
+Author: gustavgodsk <gustavgodsk@gmail.com>
+Date:   Thu Sep 11 21:43:00 2025 +0200
+
+    removed dev remnants
+
+[33mcommit 232dfbbe54c80d5d0cb1f61bbbc0b16b411a1b73[m
+Author: gustavgodsk <gustavgodsk@gmail.com>
+Date:   Thu Sep 11 21:40:52 2025 +0200
+
+    Removed praktisk + Added line to show current time
+
+[33mcommit e9dae7fe74eaf894758a56d62b6da50ee9506f72[m
+Author: sofus <sofus.c@icloud.com>
+Date:   Thu Sep 11 09:38:13 2025 +0200
+
+    tilføjet gem praktisk toggle
+
+[33mcommit 355920a32556ac455fb2c5178ba0d4d32e543e26[m
+Author: sofus <sofus.c@icloud.com>
+Date:   Thu Sep 11 08:14:04 2025 +0200
+
+    små ting ift. farver
+
+[33mcommit 9c4faa57c9395911dcb18094300768f97e7cb332[m
+Merge: 1a8c1f6 254c877
+Author: gustavgodsk <80204659+gustavgodsk@users.noreply.github.com>
+Date:   Thu Sep 4 14:18:41 2025 +0200
+
+    Merge pull request #1 from LuckyEag1e/main
+    
+    Updated script to also highlight the background of the column of the current day
+
+[33mcommit 254c87713c0cd3e6ae9da36e69f31c0bec95d92c[m
+Author: LuckyEag1e <120220522+LuckyEag1e@users.noreply.github.com>
+Date:   Thu Sep 4 13:37:45 2025 +0200
+
+    Update config.js
+    
+    Included a field for customising the highlight color for the current day
+
+[33mcommit e5ea6c35af68e54479837cbb8dc2987bd01a4f35[m
+Author: LuckyEag1e <120220522+LuckyEag1e@users.noreply.github.com>
+Date:   Thu Sep 4 13:37:01 2025 +0200
+
+    Update script.js
+    
+    Updated to add highlighting for the current day
+
+[33mcommit 1a8c1f6f14b9bdbea0cbe0d2f2ba1b6ad93b7c40[m
+Author: gustavgodsk <80204659+gustavgodsk@users.noreply.github.com>
+Date:   Mon Aug 25 20:12:06 2025 +0200
+
+    Update readme.md
+
+[33mcommit 38edabe88ab395fcf8f4628c51c03c34aba34681[m
+Author: gustavgodsk <80204659+gustavgodsk@users.noreply.github.com>
+Date:   Mon Aug 25 20:11:53 2025 +0200
+
+    Update readme.md
+
+[33mcommit 8985deaf248f57ed8779cd4b0b42ab12eea282ec[m
+Author: gustavgodsk <80204659+gustavgodsk@users.noreply.github.com>
+Date:   Mon Aug 25 20:11:10 2025 +0200
+
+    Update readme.md
+
+[33mcommit 7539135a51b1e30be1d18e2b47011ae4e48780da[m
+Author: gustavgodsk <80204659+gustavgodsk@users.noreply.github.com>
+Date:   Mon Aug 25 20:09:22 2025 +0200
+
+    Update readme.md
+
+[33mcommit 978e7657acbeb08781cfbdbe0f3e426d789a7cf5[m
+Author: gustavgodsk <80204659+gustavgodsk@users.noreply.github.com>
+Date:   Mon Aug 25 20:08:44 2025 +0200
+
+    Update readme.md
+
+[33mcommit ea41565468e9ab453a5861d35de8c5ae8a28096a[m
+Author: gustavgodsk <gustavgodsk@gmail.com>
+Date:   Mon Aug 25 20:04:57 2025 +0200
+
+    update readme
+
+[33mcommit af46e83cbaa9e581ffaf5ad2beaa59af86427c78[m
+Author: gustavgodsk <gustavgodsk@gmail.com>
+Date:   Mon Aug 25 19:57:10 2025 +0200
+
+    Initial commit
