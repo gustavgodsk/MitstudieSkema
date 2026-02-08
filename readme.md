@@ -36,7 +36,7 @@ Tryk på extension-ikonet for at gå til config-siden.
 Lav myscript.js i `scripts/`
 
 Brug `template.js` til at komme i gang
-```
+```javascript
 let CONFIG = {};
 
 function setup() {
@@ -58,7 +58,7 @@ if (window.CONFIG) {
 
 2. Tilføj default config i `config/config.default.js`:
 
-```
+```javascript
 let DEFAULT_CONFIG = {
     ...
     myscript: {
@@ -69,7 +69,7 @@ let DEFAULT_CONFIG = {
 ```
 
 3. Registrer script og URL matches i `manifest.json`
-```
+```json
     "content_scripts": [
         {
             "js": [
