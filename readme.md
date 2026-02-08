@@ -1,4 +1,4 @@
-# <div style="display: flex; align-items: center;"> <img src="./icons/2icon48.png"> <span>DAT2AU (browser extension)</span> </div>
+# <div style="display: flex !important; align-items: center !important;"> <img src="./icons/2icon48.png"> <span>DAT2AU (browser extension)</span> </div>
 
 Quality of life improvements til datalogi på AU. Virker på Chrome og Firefox.
 
