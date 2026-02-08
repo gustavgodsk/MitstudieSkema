@@ -41,7 +41,7 @@
         }
     ],
     "background": {
-        "service_worker": "background.js"
+        "service_worker": "options/background.js"
     },
     "options_ui": {
         "page": "options/options.html",
