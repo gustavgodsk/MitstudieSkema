@@ -1,4 +1,4 @@
-# ![Icon](./icons/2icon48.png) DAT2AU (browser extension) 
+# <img src="./icons/2icon48.png" style="vertical-align: middle;"> DAT2AU (browser extension)
 
 Quality of life improvements til datalogi på AU. Virker på Chrome og Firefox.
 
