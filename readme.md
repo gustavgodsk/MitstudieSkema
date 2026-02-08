@@ -2,11 +2,10 @@
 
 Quality of life improvements til datalogi på AU. Virker på Chrome og Firefox.
 
-*Mitstudie:* forbedret skema på [mitstudie.au.dk](https://mitstudie.au.dk)
+1. **Mitstudie:**forbedret skema på [mitstudie.au.dk](https://mitstudie.au.dk)
+2. **Panopto:** automatisk redirect til Embed view (se alle skærme på samme tid)
 
-*Panopto:* automatisk redirect til Embed view (se alle skærme på samme tid)
-
-*Vim motions:* basic vim motions i browseren
+3. **Vim motions:** basic vim motions i browseren
 
 <img width="1893" height="1035" alt="image" src="https://github.com/user-attachments/assets/cb55f845-f577-43ad-8d6c-8ff53c0f8c5f" />
 
