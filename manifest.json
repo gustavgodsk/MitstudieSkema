@@ -1,8 +1,8 @@
 {
     "browser_specific_settings": {
         "gecko": {
-            "id": "DAT2AU",
-            "strict_min_version": "58.0"
+            "id": "@DAT2AU",
+            "strict_min_version": "109.0"
         }
     },
     "manifest_version": 3,
@@ -11,15 +11,15 @@
     "description": "Quality of Life improvements til datalogi på AU",
     "action": {
         "default_icon": {
-            "16": "icons/dolph_16.png",
-            "32": "icons/dolph_32.png"
+            "16": "icons/2icon16.png",
+            "32": "icons/2icon32.png"
         }
     },
     "icons": {
-        "16": "icons/dolph_16.png",
-        "32": "icons/dolph_32.png",
-        "48": "icons/dolph_48.png",
-        "128": "icons/dolph_128.png"
+        "16": "icons/2icon16.png",
+        "32": "icons/2icon32.png",
+        "48": "icons/2icon48.png",
+        "128": "icons/2icon128.png"
     },
     "permissions": ["storage"],
     "content_scripts": [

@@ -1,4 +1,4 @@
-# DAT2AU (browser extension)
+# DAT2AU (browser extension) ![Icon]("icons/2icon128.png")
 
 Quality of life improvements til datalogi på AU. Virker på Chrome og Firefox.
 
