@@ -1,9 +1,4 @@
-<table>
-  <tr>
-    <td><img src="./icons/2icon48.png" width="48"></td>
-    <td><h1>DAT2AU (browser extension)</h1></td>
-  </tr>
-</table>
+# <img src="./icons/2icon48.png" align="middle" width="48"> DAT2AU (browser extension)
 
 Quality of life improvements til datalogi på AU. Virker på Chrome og Firefox.
 
