@@ -4,7 +4,7 @@ Quality of life improvements til datalogi på AU. Virker på Chrome og Firefox.
 
 * **Mitstudie:** forbedret skema på [mitstudie.au.dk](https://mitstudie.au.dk)
 * **Panopto:** automatisk redirect til Embed view på [panopto](https://au.cloud.panopto.eu/Panopto/Pages/)
-* **Vim motions:** basic vim motions i browseren
+* **Vim motions:** basic vim motions i browseren (in progress)
 
 <img width="1893" height="1035" alt="image" src="https://github.com/user-attachments/assets/cb55f845-f577-43ad-8d6c-8ff53c0f8c5f" />
 
