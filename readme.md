@@ -71,14 +71,16 @@ const DEFAULT_CONFIG = {
 **3.** Registrer script og URL matches i `manifest.json`
 ```json
 "content_scripts": [
-{
-    "js": [
-        "config/config.default.js",
-        "config/config.loader.js",
-        "scripts/myscript.js"
-    ],
-    "matches": ["https://example.com/*"]
-},
+    // previous scripts...
+    {
+        "js": [
+            "config/config.default.js",
+            "config/config.loader.js",
+            "scripts/myscript.js"
+        ],
+        "matches": ["https://example.com/*"]
+    },
+],
 ```
 > Vigtigt: `config/config.default.js` og `config/config.loader.js` skal altid inkluderes i den rækkefølge for at dit script får adgang til config-filen
 
