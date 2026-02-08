@@ -2,10 +2,9 @@
 
 Quality of life improvements til datalogi på AU. Virker på Chrome og Firefox.
 
-1. **Mitstudie:**forbedret skema på [mitstudie.au.dk](https://mitstudie.au.dk)
-2. **Panopto:** automatisk redirect til Embed view (se alle skærme på samme tid)
-
-3. **Vim motions:** basic vim motions i browseren
+* **Mitstudie:** forbedret skema på [mitstudie.au.dk](https://mitstudie.au.dk)
+* **Panopto:** automatisk redirect til Embed view på [panopto](https://au.cloud.panopto.eu/Panopto/Pages/)
+* **Vim motions:** basic vim motions i browseren
 
 <img width="1893" height="1035" alt="image" src="https://github.com/user-attachments/assets/cb55f845-f577-43ad-8d6c-8ff53c0f8c5f" />
 
@@ -32,32 +31,32 @@ Tryk på extension-ikonet for at gå til config-siden.
 
 # Contributing
 
-1. Lav script
 
-Lav myscript.js i `scripts/`
+**1.** Lav `myscript.js` i `scripts/` mappen
 
-Brug `template.js` til at komme i gang
+Brug `template.js` til at komme i gang:
 ```javascript
 let CONFIG = {};
 
 function setup() {
+    if (!CONFIG.enabled) return;
     //
     // YOUR CODE HERE
     //
 }
 
 window.addEventListener("configReady", (e) => {
-    CONFIG = e.detail;
+    CONFIG = e.detail.myscript;
     setup();
 });
 
 if (window.CONFIG) {
-    CONFIG = e.detail;
+    CONFIG = e.detail.myscript;
     setup();
 }
 ```
 
-2. Tilføj default config i `config/config.default.js`:
+**2.** Tilføj default config i `config/config.default.js`:
 
 ```javascript
 let DEFAULT_CONFIG = {
@@ -69,7 +68,7 @@ let DEFAULT_CONFIG = {
 }
 ```
 
-3. Registrer script og URL matches i `manifest.json`
+**3.** Registrer script og URL matches i `manifest.json`
 ```json
 "content_scripts": [
 {
@@ -83,4 +82,4 @@ let DEFAULT_CONFIG = {
 ```
 > Vigtigt: `config/config.default.js` og `config/config.loader.js` skal altid inkluderes i den rækkefølge for at dit script får adgang til config-filen
 
-4. Lav pull request på GitHub
+**4.** Lav pull request på GitHub
