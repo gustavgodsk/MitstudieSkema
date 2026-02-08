@@ -1,0 +1,31 @@
+/* options.css */
+body {
+    font-family: monospace;
+    padding: 20px;
+    background: #f4f4f4;
+    font-size: 1.2em;
+}
+fieldset {
+    border: 1px solid #ccc;
+    margin-bottom: 15px;
+    padding: 10px;
+    background: #fff;
+}
+legend {
+    font-weight: bold;
+    padding: 0 5px;
+    font-size: 1.5em;
+    color: #555;
+}
+.setting-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 5px 0;
+}
+input[type="text"] {
+    font-size: 1em;
+    border: 1px solid #ddd;
+    padding: 3px;
+}
+
