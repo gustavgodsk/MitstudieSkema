@@ -1,4 +1,4 @@
-# DAT2 Extension
+# DAT2AU (browser extension)
 
 Quality of life improvements til datalogi på AU. Virker på Chrome og Firefox.
 
