@@ -43,7 +43,7 @@ function addEvent(event) {
 }
 
 function getNewColor() {
-    for (const [key, color] of Object.entries(CONFIG.colors.events)) {
+    for (const [_, color] of Object.entries(CONFIG.colors.events)) {
         // Tjek om farve allerede er brugt
         const isUsed = subjects.some((subject) => subject.color === color);
         if (!isUsed) {
@@ -263,7 +263,6 @@ const observer = new MutationObserver(callback);
 
 function setupCSS() {
     const style = document.createElement("style");
-    style.type = "text/css";
 
     const colorRules = Object.entries(CONFIG.colors.event_type)
         .map(

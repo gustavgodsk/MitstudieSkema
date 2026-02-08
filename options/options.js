@@ -78,9 +78,7 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("reset-btn").onclick = resetToDefaults;
 });
 
-window.addEventListener("configReady", (e) => {
-    generateUI();
-});
+window.addEventListener("configReady", generateUI);
 
 if (window.CONFIG) {
     generateUI();
