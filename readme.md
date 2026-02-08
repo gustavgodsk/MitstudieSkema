@@ -32,9 +32,9 @@ Tryk på extension-ikonet for at gå til config-siden.
 # Contributing
 
 
-**1.** Lav `myscript.js` i `scripts/` mappen
+**1.** Opret ny fil `myscript.js` i `scripts/` mappen
 
-Brug `template.js` til at komme i gang:
+Brug `scripts/template.js` til at komme i gang:
 ```javascript
 let CONFIG = {};
 
@@ -59,7 +59,7 @@ if (window.CONFIG) {
 **2.** Tilføj default config i `config/config.default.js`:
 
 ```javascript
-let DEFAULT_CONFIG = {
+const DEFAULT_CONFIG = {
     // ...
     myscript: {
         enabled: true,
