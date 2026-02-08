@@ -33,17 +33,17 @@ const DEFAULT_CONFIG = {
     },
     panopto: {
         redirect_to_embed: true
-    },
-    vim_motions: {
-        enabled: false,
-        "left": "h",
-        "down": "j",
-        "up": "k",
-        "right": "l",
-        "history_back": "H",
-        "history_forward": "L",
-        "top": "g-g",
-        "bottom": "G",
-        "remove_focus": "Esc"
     }
+    // vim_motions: {
+    //     enabled: false,
+    //     "left": "h",
+    //     "down": "j",
+    //     "up": "k",
+    //     "right": "l",
+    //     "history_back": "H",
+    //     "history_forward": "L",
+    //     "top": "g-g",
+    //     "bottom": "G",
+    //     "remove_focus": "Esc"
+    // }
 };
