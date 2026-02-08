@@ -41,6 +41,15 @@
                 "scripts/panopto.js"
             ],
             "matches": ["https://au.cloud.panopto.eu/Panopto/Pages/*"]
+        },
+
+        {
+            "js": [
+                "config/config.default.js",
+                "config/config.loader.js",
+                "scripts/vimmotions.js"
+            ],
+            "matches": ["https://*/*"]
         }
     ],
     "background": {
