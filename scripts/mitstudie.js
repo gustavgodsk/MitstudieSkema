@@ -271,7 +271,7 @@ function setupCSS() {
         )
         .join("\n");
 
-    style.innerHTML =
+    style.textContent =
         colorRules +
         `
     .timetable .event {
