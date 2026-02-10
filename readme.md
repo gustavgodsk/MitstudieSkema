@@ -4,7 +4,7 @@ Quality of life improvements til datalogi på AU. Virker på Chrome og Firefox.
 
 * **Mitstudie:** forbedret skema på [mitstudie.au.dk](https://mitstudie.au.dk)
 * **Panopto:** automatisk redirect til Embed view på [panopto](https://au.cloud.panopto.eu/Panopto/Pages/)
-* **Vim motions:** basic vim motions til navigation (skal selv aktiveres i options)
+* **Vim Motions:** flyttet til [VimBrowser](https://github.com/gustavgodsk/VimBrowser)
 
 Du kan tilføje udvidelserne her: [Chrome Webshop](https://chromewebstore.google.com/detail/dat2au/ndbknejadmdkfgpgkjnlkgmcemfnaaja?hl=da) og Firefox (snart)
 

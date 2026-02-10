@@ -11,7 +11,7 @@
     "manifest_version": 3,
     "name": "DAT2AU",
     "version": "1.2",
-    "description": "Quality of Life improvements til datalogi på AU",
+    "description": "Quality of Life improvements til datalogistuderende på AU",
     "action": {
         "default_icon": {
             "16": "static/icons/icon16.png",
