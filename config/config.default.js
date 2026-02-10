@@ -4,7 +4,7 @@ const DEFAULT_CONFIG = {
         hide_vejledning: true,
 
         forkortelser: {
-            enabled: true, //skift til false hvis du ikke ønsker forkortelser
+            enabled: true,
             par: {
                 "Introduktion til matematik og optimering": "IMO",
                 "Algoritmer og datastrukturer": "ADS",
@@ -16,7 +16,6 @@ const DEFAULT_CONFIG = {
         },
 
         colors: {
-            // imo, ads osv. farver
             current_day_color: "#a8b5b0",
             line_color: "#0E79B2cc",
             events: {
