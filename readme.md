@@ -16,7 +16,7 @@ Tryk på extension-ikonet for at gå til config-siden.
 
 # Contributing
 
-**1.** Lav en lokal kopi af projektet (se [Manuel Installation](#ManuelInstallation))
+**1.** Lav en lokal kopi af projektet (se [Manuel Installation](#manuel-installation))
 
 **2.** Opret ny fil `myscript.js` i `scripts/` mappen
 
@@ -70,7 +70,7 @@ const DEFAULT_CONFIG = {
 
 **5.** Lav pull request på GitHub
 
-# Manuel Installation {#ManuelInstallation}
+# Manuel Installation
 
 Download filerne selv og gem i ny mappe eller kør
 ```git
