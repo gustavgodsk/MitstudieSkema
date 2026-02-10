@@ -1,4 +1,4 @@
-// lytter om du klikker på extension ikonet og åbner options-siden
+// Listens for extension icon click event (to open options page)
 chrome.action.onClicked.addListener(() => {
     chrome.runtime.openOptionsPage();
 });
