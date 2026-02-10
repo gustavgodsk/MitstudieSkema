@@ -32,20 +32,5 @@ const DEFAULT_CONFIG = {
     },
     panopto: {
         redirect_to_embed: true
-    },
-    vim_motions: {
-        enabled: false,
-        keybindings: {
-            left: "h",
-            down: "j",
-            up: "k",
-            right: "l",
-            history_back: "H",
-            history_forward: "L",
-            top: "gg",
-            bottom: "G",
-            reload: "r",
-            remove_focus: "<Ctrl-c>"
-        }
     }
 };
