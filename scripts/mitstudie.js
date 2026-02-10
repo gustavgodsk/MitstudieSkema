@@ -207,7 +207,6 @@
         }
     }
 
-    let todays_day = null;
     function colorToday(days) {
         let all_days = days.querySelectorAll(".timetable__singleday-events");
         let all_titles = days.querySelectorAll(".timetable__day-header");
@@ -314,7 +313,7 @@
         setupCSS();
     }
 
-    window.addEventListener("configReady", (e) => {
+    window.addEventListener("configReady", () => {
         setup();
     });
 

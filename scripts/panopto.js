@@ -12,7 +12,7 @@
         }
     }
 
-    window.addEventListener("configReady", (e) => {
+    window.addEventListener("configReady", () => {
         redirectToEmbed();
     });
 

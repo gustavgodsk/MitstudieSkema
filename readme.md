@@ -33,7 +33,7 @@ Brug `scripts/template.js` til at komme i gang:
         //
     }
 
-    window.addEventListener("configReady", (e) => {
+    window.addEventListener("configReady", () => {
         setup();
     });
 
