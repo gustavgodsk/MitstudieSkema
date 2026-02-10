@@ -68,7 +68,9 @@ const DEFAULT_CONFIG = {
 ```
 > Vigtigt: `config/config.default.js` og `config/config.loader.js` skal altid inkluderes i den rækkefølge for at dit script får adgang til config-filen
 
-**5.** Lav pull request på GitHub
+**5.** Prøv ændringerne lokalt ved at genindlæse udvidelsen på `chrome://extensions` (Chrome) eller `about:debugging#/runtime/this-firefox` (Firefox)
+
+**6.** Når du er tilfreds med ændringerne, kan du lave en pull request på GitHub (du får en besked når din PR bliver accepteret)
 
 # Manuel Installation
 
