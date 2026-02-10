@@ -6,7 +6,7 @@ Quality of life improvements til datalogi på AU. Virker på Chrome og Firefox.
 * **Panopto:** automatisk redirect til Embed view på [panopto](https://au.cloud.panopto.eu/Panopto/Pages/)
 * **Vim Motions:** flyttet til [VimBrowser](https://github.com/gustavgodsk/VimBrowser)
 
-Du kan tilføje udvidelserne her: [Chrome Webshop](https://chromewebstore.google.com/detail/dat2au/ndbknejadmdkfgpgkjnlkgmcemfnaaja?hl=da) og Firefox (snart)
+Du kan tilføje udvidelsen her: [Chrome Webshop](https://chromewebstore.google.com/detail/dat2au/ndbknejadmdkfgpgkjnlkgmcemfnaaja?hl=da) og Firefox (snart)
 
 <img width="1893" height="1035" alt="image" src="./static/images/screenshot.png" />
 
@@ -16,12 +16,9 @@ Tryk på extension-ikonet for at gå til config-siden.
 
 # Contributing
 
-**0.** Lav en lokal kopi af projektet
-```bash
-git clone https://github.com/gustavgodsk/DAT2AU.git
-```
+**1.** Lav en lokal kopi af projektet (se [Manuel Installation](#ManuelInstallation))
 
-**1.** Opret ny fil `myscript.js` i `scripts/` mappen
+**2.** Opret ny fil `myscript.js` i `scripts/` mappen
 
 Brug `scripts/template.js` til at komme i gang:
 ```javascript
@@ -43,7 +40,7 @@ Brug `scripts/template.js` til at komme i gang:
 }
 ```
 
-**2.** Tilføj default config i `config/config.default.js`:
+**3.** Tilføj default config i `config/config.default.js`:
 
 ```javascript
 const DEFAULT_CONFIG = {
@@ -55,7 +52,7 @@ const DEFAULT_CONFIG = {
 }
 ```
 
-**3.** Registrer script og URL matches i `manifest.json`
+**4.** Registrer script og URL matches i `manifest.json`
 ```json
 "content_scripts": [
     // previous scripts...
@@ -71,11 +68,14 @@ const DEFAULT_CONFIG = {
 ```
 > Vigtigt: `config/config.default.js` og `config/config.loader.js` skal altid inkluderes i den rækkefølge for at dit script får adgang til config-filen
 
-**4.** Lav pull request på GitHub
+**5.** Lav pull request på GitHub
 
-# Manuel Installation
+# Manuel Installation {#ManuelInstallation}
 
-Download filerne og gem i mappe
+Download filerne selv og gem i ny mappe eller kør
+```git
+git clone https://github.com/gustavgodsk/DAT2AU.git
+```
 
 ### Chrome
 1. Gå til chrome://extensions i Chrome
@@ -89,3 +89,5 @@ Download filerne og gem i mappe
 2. Tryk *Læs midlertidig tilføjelse*
 3. Find mappen og vælg *manifest.json*
 4. Tryk *Genindlæs*
+
+> Vigtigt: Hvis du foretager ændringer lokalt, skal du *genindlæse* mappen før ændringerne træder i kraft.
