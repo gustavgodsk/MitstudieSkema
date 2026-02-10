@@ -92,4 +92,4 @@ git clone https://github.com/gustavgodsk/DAT2AU.git
 3. Find mappen og vælg *manifest.json*
 4. Tryk *Genindlæs*
 
-> Vigtigt: Hvis du foretager ændringer lokalt, skal du *genindlæse* mappen før ændringerne træder i kraft.
+> Vigtigt: Hvis du foretager ændringer lokalt, skal du *genindlæse* udvidelsen før ændringerne træder i kraft.

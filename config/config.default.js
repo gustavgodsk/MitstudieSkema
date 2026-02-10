@@ -17,7 +17,7 @@ const DEFAULT_CONFIG = {
 
         colors: {
             current_day_color: "#a8b5b0",
-            line_color: "#0E79B2cc",
+            line_color: "#0E79B2",
             events: {
                 "1": "#A5BCFF",
                 "2": "#FCB9C2",

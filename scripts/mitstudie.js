@@ -300,9 +300,7 @@
     }
 
     async function setup() {
-        console.log("SETUP");
         if (!CONFIG.mitstudie.enabled) return;
-        console.log("SETUP2");
 
         const parent = document.querySelector(".app-mitstudie-container");
         observer.observe(parent, {
