@@ -6,7 +6,7 @@ Quality of life improvements til datalogi på AU. Virker på Chrome og Firefox.
 * **Panopto:** automatisk redirect til Embed view på [panopto](https://au.cloud.panopto.eu/Panopto/Pages/)
 * **Vim Motions:** flyttet til [VimBrowser](https://github.com/gustavgodsk/VimBrowser)
 
-Du kan tilføje udvidelsen her: [Chrome Webshop](https://chromewebstore.google.com/detail/dat2au/ndbknejadmdkfgpgkjnlkgmcemfnaaja?hl=da) og Firefox (snart)
+Du kan tilføje udvidelsen her: [Chrome Webshop](https://chromewebstore.google.com/detail/dat2au/ndbknejadmdkfgpgkjnlkgmcemfnaaja?hl=da) og [Firefox] (https://addons.mozilla.org/en-GB/firefox/addon/dat2au/)
 
 <img width="1893" height="1035" alt="image" src="./static/images/screenshot.png" />
 
