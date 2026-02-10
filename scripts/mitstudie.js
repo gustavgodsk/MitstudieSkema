@@ -153,7 +153,7 @@ function callback(mutationList) {
             mutation.addedNodes[0].childNodes.values((node) =>
                 node.classList.contains("timetable")
             )
-        ) {
+        ) {           
             const children = [...mutation.addedNodes[0].childNodes.values()];
             const timetable = children?.filter((node) =>
                 node.classList?.contains("timetable")
@@ -193,8 +193,7 @@ function callback(mutationList) {
             add_toggle_input();
         }
         if (mutation.addedNodes.item(0)?.classList?.contains("event")) {
-            const hide =
-                document.getElementById("hide_vejledning")?.checked || false;
+            const hide = document.getElementById("hide_vejledning")?.checked || false;
             hide_events(hide, mutation.addedNodes[0]);
         }
     }
@@ -208,14 +207,13 @@ function colorToday(days) {
     const d = new Date();
     let day = d.getDay();
 
-    if (lineElement !== null) {
+    if (lineElement) {
         lineElement.remove();
         lineElement = null;
     }
-    if (day > 0 && day < 6) {
-        if (current_date == null) {
-            current_date = all_titles[day - 1].textContent;
-        }
+    if (day > 0 && day < 6 && all_days[day - 1]) {
+        if (!current_date) { current_date = all_titles[day - 1].textContent; }
+
         if (all_titles[day - 1].textContent == current_date) {
             let todays_day = all_days[day - 1];
             todays_day.style.backgroundColor = CONFIG.colors.current_day_color;
@@ -228,15 +226,16 @@ let timetableHeight = 0;
 let lineElement = null;
 
 function updateLine(today) {
-    if (today == null) return;
+    if (!today) return;
+
     timetableHeight = today.clientHeight;
-    if (lineElement == null) {
+    if (!lineElement) {
         lineElement = document.createElement("div");
         lineElement.style.setProperty("position", "absolute", "important");
         lineElement.style.height = "5px";
         lineElement.style.width = "100%";
         lineElement.style.zIndex = "9999";
-        lineElement.style.backgroundColor = CONFIG.color.line_color;
+        lineElement.style.backgroundColor = CONFIG.colors.line_color;
         lineElement.style.pointerEvents = "none";
         today.style.position = "relative";
         today.appendChild(lineElement);
@@ -246,17 +245,21 @@ function updateLine(today) {
     lineElement.style.top = getTopPercentage * timetableHeight + "px";
 }
 
+
+/*Method to calculate the placement of the currentTime line*/
 function calculateTopPercentage() {
-    const date = new Date();
-    const hours = date.getHours();
-    const minutes = date.getMinutes();
-    if (8 < hours < 19) {
-        let hour = hours - 8;
-        let minutesToHours = minutes / 60;
-        let hourPercentage = (hour + minutesToHours) / 11;
-        return hourPercentage;
-    }
-    return 100;
+    const now = new Date();
+    const current = now.getHours() + now.getMinutes() / 60;
+
+    const timespan = document.querySelector(".timetable__hours");
+    const count = timespan?.children.length ?? 0;
+
+    const BEGIN = 8;
+    const END = count ? BEGIN + count - 1 : 17;
+
+    if (current <= BEGIN) return 0;
+    if (current >= END) return 1;
+    return (current - BEGIN) / (END - BEGIN);
 }
 
 const observer = new MutationObserver(callback);
