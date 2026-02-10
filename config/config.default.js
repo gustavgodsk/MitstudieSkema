@@ -45,7 +45,8 @@ const DEFAULT_CONFIG = {
             history_forward: "L",
             top: "gg",
             bottom: "G",
-            remove_focus: "<Escape>"
+            reload: "r",
+            remove_focus: "<Ctrl-c>"
         }
     }
 };

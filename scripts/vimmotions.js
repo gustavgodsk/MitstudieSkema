@@ -1,161 +1,181 @@
-let CONFIG = {};
+{
+    const SCROLL_AMOUNT = 100;
+    const keyMap = new Map();
+    const incrementedPointers = new Set();
+    let lastKeyPressedTimer = null;
 
-const SCROLL_AMOUNT = 100;
-const keyMap = new Map();
-const incrementedPointers = new Set();
-let lastKeyPressedTimer = null;
+    class Keybinding {
+        constructor(keys) {
+            this.keys = keys;
+            this.pointer = 0;
+        }
 
-class Keybinding {
-    constructor(keys) {
-        this.keys = keys;
-        this.pointer = 0;
+        reset() {
+            this.pointer = 0;
+        }
+
+        next() {
+            return this.keys[this.pointer];
+        }
     }
 
-    reset() {
-        this.pointer = 0;
+    /**
+     * Splits keybind string (specified in cofig) into its individual keys
+     */
+    function getKeys(str) {
+        const regex = /<([^>]+)>/g;
+        const extracted = [];
+        const cleanedStr = str.replace(regex, (_, p1) => {
+            // Chord = contains a '-', meaning combined keypresses eg. Ctrl-c
+            if (p1.includes("-")) {
+                const parts = p1.split("-");
+                extracted.push({
+                    chord: true,
+                    ctrl: parts.includes("Ctrl"),
+                    alt: parts.includes("Alt"),
+                    shift: parts.includes("Shift"),
+                    key: parts[parts.length - 1].toLowerCase()
+                });
+            } else {
+                extracted.push(p1); // Normal single key like <Enter>
+            }
+            return "";
+        });
+
+        return extracted.concat(cleanedStr.split(""));
     }
 
-    next() {
-        return this.keys[this.pointer];
-    }
-}
+    function isMatch(event, expected) {
+        if (typeof expected === "string") {
+            return event.key === expected;
+        }
 
-//splits keybind string (specified in cofig) into its individual keys
-//side effect: keys inside <key> are pushed to the front of the sequence
-function getKeys(str) {
-    // split by < >
-    const regex = /<([^>]+)>/g;
-    const extracted = [];
-    const cleanedStr = str.replace(regex, (_, p1) => {
-        extracted.push(p1);
-        return "";
-    });
-
-    // split by letter
-    const keys = extracted.concat(cleanedStr.split(""));
-
-    return keys;
-}
-
-function handleKeyPress(e) {
-    clearTimeout(lastKeyPressedTimer);
-    lastKeyPressedTimer = setTimeout(() => {
-        resetIncrementedPointers();
-    }, 3000);
-
-    if (document.activeElement.tagName.toUpperCase() == "BODY") {
-        handleActiveBodyExclusiveEvents(e);
-    }
-
-    if (e.key == keyMap.get("remove_focus").next()) {
-        handleKeyHit(keyMap.get("remove_focus"), () =>
-            document.activeElement.blur()
-        );
-    }
-}
-
-function handleActiveBodyExclusiveEvents(e) {
-    switch (e.key) {
-        case keyMap.get("left").next():
-            handleKeyHit(keyMap.get("left"), () => fnLeft(e));
-            break;
-        case keyMap.get("down").next():
-            handleKeyHit(keyMap.get("down"), () => fnDown(e));
-            break;
-        case keyMap.get("up").next():
-            handleKeyHit(keyMap.get("up"), () => fnUp(e));
-            break;
-        case keyMap.get("right").next():
-            handleKeyHit(keyMap.get("right"), () => fnRight(e));
-            break;
-        case keyMap.get("history_back").next():
-            handleKeyHit(keyMap.get("history_back"), () => history.back());
-            break;
-        case keyMap.get("history_forward").next():
-            handleKeyHit(keyMap.get("history_forward"), () =>
-                history.forward()
+        if (expected.chord) {
+            return (
+                event.ctrlKey === expected.ctrl &&
+                event.altKey === expected.alt &&
+                event.shiftKey === expected.shift &&
+                event.key.toLowerCase() === expected.key
             );
-            break;
-        case keyMap.get("top").next():
-            handleKeyHit(keyMap.get("top"), () => fnTopOrBot());
-            break;
-        case keyMap.get("bottom").next():
-            handleKeyHit(keyMap.get("bottom"), () => fnTopOrBot(true));
-            break;
+        }
+        return false;
     }
-}
 
-const fnLeft = (e) => {
-    scrollByDirection(-1, 0, e.repeat);
-};
+    function handleKeyPress(e) {
+        clearTimeout(lastKeyPressedTimer);
+        lastKeyPressedTimer = setTimeout(() => {
+            resetIncrementedPointers();
+        }, 3000);
 
-const fnDown = (e) => {
-    scrollByDirection(0, 1, e.repeat);
-};
+        if (document.activeElement.tagName.toUpperCase() == "BODY") {
+            handleActiveBodyExclusiveEvents(e);
+        }
 
-const fnUp = (e) => {
-    scrollByDirection(0, -1, e.repeat);
-};
+        if (isMatch(e, keyMap.get("remove_focus").next())) {
+            handleKeyHit(keyMap.get("remove_focus"), () =>
+                document.activeElement.blur()
+            );
+        }
+    }
 
-const fnRight = (e) => {
-    scrollByDirection(1, 0, e.repeat);
-};
+    function handleActiveBodyExclusiveEvents(e) {
+        const bodyCommands = [
+            { id: "left", fn: () => fnLeft(e) },
+            { id: "down", fn: () => fnDown(e) },
+            { id: "up", fn: () => fnUp(e) },
+            { id: "right", fn: () => fnRight(e) },
+            { id: "history_back", fn: () => history.back() },
+            { id: "history_forward", fn: () => history.forward() },
+            { id: "top", fn: () => fnTopOrBot() },
+            { id: "bottom", fn: () => fnTopOrBot(true) },
+            { id: "reload", fn: () => window.location.reload() }
+        ];
 
-const fnTopOrBot = (bottom = false) => {
-    let opts = {
-        top: bottom ? document.body.scrollHeight : 0,
-        left: 0,
-        behavior: "instant"
+        for (const cmd of bodyCommands) {
+            const kb = keyMap.get(cmd.id);
+            if (!kb) continue;
+
+            const expected = kb.next();
+
+            if (isMatch(e, expected)) {
+                handleKeyHit(kb, cmd.fn);
+                break;
+            }
+        }
+    }
+
+    const fnLeft = (e) => {
+        scrollByDirection(-1, 0, e.repeat);
     };
 
-    window.scrollTo(opts);
-};
+    const fnDown = (e) => {
+        scrollByDirection(0, 1, e.repeat);
+    };
 
-function resetIncrementedPointers() {
-    for (const kb of incrementedPointers) {
-        kb.reset();
-    }
-    incrementedPointers.clear();
-}
+    const fnUp = (e) => {
+        scrollByDirection(0, -1, e.repeat);
+    };
 
-function handleKeyHit(kb, cb) {
-    kb.pointer++;
-    const isTerminatingKey = kb.pointer >= kb.keys.length;
+    const fnRight = (e) => {
+        scrollByDirection(1, 0, e.repeat);
+    };
 
-    incrementedPointers.add(kb);
+    const fnTopOrBot = (bottom = false) => {
+        let opts = {
+            top: bottom ? document.body.scrollHeight : 0,
+            left: 0,
+            behavior: "instant"
+        };
 
-    if (!isTerminatingKey) return;
+        window.scrollTo(opts);
+    };
 
-    resetIncrementedPointers();
-    cb();
-}
-
-function scrollByDirection(xDir, yDir, isRepeating) {
-    let behavior = isRepeating ? "instant" : "smooth";
-    let top = yDir * SCROLL_AMOUNT;
-    let left = xDir * SCROLL_AMOUNT;
-    window.scrollBy({ top, left, behavior });
-}
-
-function setup() {
-    if (!CONFIG.enabled) return;
-
-    keyMap.clear();
-    for (const [key, value] of Object.entries(CONFIG.keybindings)) {
-        keyMap.set(key, new Keybinding(getKeys(value)));
+    function resetIncrementedPointers() {
+        for (const kb of incrementedPointers) {
+            kb.reset();
+        }
+        incrementedPointers.clear();
     }
 
-    document.addEventListener("keydown", (e) => {
-        handleKeyPress(e);
+    function handleKeyHit(kb, cb) {
+        kb.pointer++;
+        const isTerminatingKey = kb.pointer >= kb.keys.length;
+
+        incrementedPointers.add(kb);
+
+        if (!isTerminatingKey) return;
+
+        resetIncrementedPointers();
+        cb();
+    }
+
+    function scrollByDirection(xDir, yDir, isRepeating) {
+        let behavior = isRepeating ? "instant" : "smooth";
+        let top = yDir * SCROLL_AMOUNT;
+        let left = xDir * SCROLL_AMOUNT;
+        window.scrollBy({ top, left, behavior });
+    }
+
+    function setup() {
+        if (!CONFIG.vim_motions.enabled) return;
+
+        keyMap.clear();
+        for (const [key, value] of Object.entries(
+            CONFIG.vim_motions.keybindings
+        )) {
+            keyMap.set(key, new Keybinding(getKeys(value)));
+        }
+
+        document.addEventListener("keydown", (e) => {
+            handleKeyPress(e);
+        });
+    }
+
+    window.addEventListener("configReady", (e) => {
+        setup();
     });
-}
 
-window.addEventListener("configReady", (e) => {
-    CONFIG = e.detail.vim_motions;
-    setup();
-});
-
-if (window.CONFIG) {
-    CONFIG = e.detail.vim_motions;
-    setup();
+    if (window.CONFIG) {
+        setup();
+    }
 }

@@ -1,34 +1,43 @@
-// merges two configs, user config overrides default
-// also merges nested properties
-function deepMerge(target, source) {
-    // 1. Create a shallow copy of the target to avoid mutating it
-    const result = { ...target };
+/**
+ * Global scope `CONFIG` object. Assigned on config load.
+ */
+let CONFIG = {};
 
-    // 2. Iterate over source keys
-    for (const key in source) {
-        const sourceValue = source[key];
-        const targetValue = result[key];
+/** Recursively merges two objects, the latter overriding the former on value conflicts.
+ *  Also merges nested properties.
+ *  @param {o} defaultObj Object containing default values
+ *  @param {*} overrideObj Object with values to override default values
+ */
+function deepMerge(defaultObj, overrideObj) {
+    const result = { ...defaultObj };
 
-        // 3. If both are objects (and not null/arrays), recurse
+    for (const key in overrideObj) {
+        const defaultValue = defaultObj[key];
+        const overrideValue = overrideObj[key];
+
+        // If both are objects (and not null/arrays), recurse
         if (
-            sourceValue &&
-            typeof sourceValue === "object" &&
-            !Array.isArray(sourceValue) &&
-            targetValue &&
-            typeof targetValue === "object" &&
-            !Array.isArray(targetValue)
+            defaultValue &&
+            typeof defaultValue === "object" &&
+            !Array.isArray(defaultValue) &&
+            overrideValue &&
+            typeof overrideValue === "object" &&
+            !Array.isArray(overrideValue)
         ) {
-            // Assign the RESULT of the merge to the key (don't use Object.assign on the value)
-            result[key] = deepMerge(targetValue, sourceValue);
+            result[key] = deepMerge(defaultValue, overrideValue);
         } else {
             // Otherwise, simple overwrite
-            result[key] = sourceValue;
+            result[key] = overrideValue;
         }
     }
 
     return result;
 }
 
+/**
+ *  Saves config overrides in chrome storage
+ *  Only saves the overridden part, not the whole config (for easier config updates in future)
+ */
 async function saveDeepSetting(path, value) {
     const storage = await chrome.storage.sync.get("DAT2Config");
     let DAT2Config = storage.DAT2Config || {};
@@ -43,11 +52,9 @@ async function saveDeepSetting(path, value) {
         current = current[part];
     }
 
-    // Set the final value
     current[parts[parts.length - 1]] = value;
 
     await chrome.storage.sync.set({ DAT2Config });
-    console.log(`Updated storage at ${path} to:`, value);
 }
 
 chrome.storage.onChanged.addListener((changes, area) => {
@@ -55,13 +62,19 @@ chrome.storage.onChanged.addListener((changes, area) => {
         const newOverrides = changes.DAT2Config.newValue || {};
         window.CONFIG = deepMerge(DEFAULT_CONFIG, newOverrides);
 
-        // refresh UI (optional)
+        // send signal that config has been updated
+        // scripts can listen to this
         window.dispatchEvent(
             new CustomEvent("configUpdated", { detail: window.CONFIG })
         );
     }
 });
 
+/**
+ * Gets and merges `DEFAULT_CONFIG` and user-specific config from chrome storage.
+ *
+ * User-specific values override default config.
+ */
 async function initializeGlobalConfig() {
     try {
         const storage = await chrome.storage.sync.get("DAT2Config");
@@ -70,6 +83,9 @@ async function initializeGlobalConfig() {
         let mergedConfig = deepMerge(DEFAULT_CONFIG, userOverrides);
 
         window.CONFIG = mergedConfig;
+        CONFIG = mergedConfig;
+
+        //Notify scripts that config is ready.
         window.dispatchEvent(
             new CustomEvent("configReady", { detail: mergedConfig })
         );
