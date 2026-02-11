@@ -6,7 +6,8 @@
         button.style.background = color;
     }
 
-    function addEvent(event) {
+    function addEvent(event) {        
+        //Add colors to event including (Forlæsning, mv.)
         const button = event.querySelector("button");
         if (button == null) return;
         const eventTitle = button.querySelector("h4").textContent;
@@ -148,8 +149,6 @@
                     addEvent(element);
                     hide_events(hide, element);
                 });
-
-                colorToday(mutation.target);
             }
             // Ved page load (hele timetable bliver lavet på én gang)
             else if (
@@ -172,22 +171,8 @@
                         hide_events(hide, event);
                     });
                 }
-            }
 
-            if (
-                mutation.addedNodes.length > 0 &&
-                mutation.addedNodes[0].classList?.contains("timetable")
-            ) {
-                let table = mutation.addedNodes[0];
-                colorToday(table);
-            } else if (
-                mutation.target === "timetable__week" &&
-                mutation.addedNodes[0].classList.contains(
-                    "timetable__singleday-events"
-                )
-            ) {
-                let table = document.querySelectorAll(".timetable__week");
-                colorToday(table);
+                colorToday();
             }
 
             if (
@@ -207,29 +192,46 @@
         }
     }
 
-    function colorToday(days) {
-        let all_days = days.querySelectorAll(".timetable__singleday-events");
-        let all_titles = days.querySelectorAll(".timetable__day-header");
-
-        const d = new Date();
-        let day = d.getDay();
-
+    /* Method to change the background color of todays date and call updateLine*/
+    function colorToday() {
+        // No clue what this does or why it was 
+        // here before, so i'll just leave it.
         if (lineElement) {
             lineElement.remove();
             lineElement = null;
         }
-        if (day > 0 && day < 6 && all_days[day - 1]) {
-            if (!current_date) {
-                current_date = all_titles[day - 1].textContent;
-            }
 
-            if (all_titles[day - 1].textContent == current_date) {
-                let todays_day = all_days[day - 1];
-                todays_day.style.backgroundColor =
-                    CONFIG.mitstudie.colors.current_day_color;
-                updateLine(todays_day);
-            }
-        }
+        //Conversion to danish
+        const daysToDanish = [
+            'søndag', 'mandag', 'tirsdag', 'onsdag',
+            'torsdag', 'fredag', 'lørdag'
+        ];
+
+        const monthsToDanish = [
+            'januar', 'februar', 'marts', 'april',
+            'maj', 'juni', 'juli', 'august',
+            'september', 'oktober', 'november', 'december'
+        ];
+
+        // Create the ariaLabel which matches the header of today
+        const date = new Date();
+        const dayName = daysToDanish[date.getDay()];
+        const dayNumber = date.getDate();
+        const monthName = monthsToDanish[date.getMonth()];
+        const year = date.getFullYear();
+        const ariaLabel = `${dayName}, ${dayNumber}. ${monthName} ${year}`;
+        
+        //Get div with this ariaLabel
+        const headerElement = document.querySelector(`[aria-label*="${ariaLabel}"]`);
+        if(!headerElement) return; //Not on page containing today
+
+        //Very next div, which is the element we want
+        const todayElement = headerElement.nextElementSibling?.closest('div');
+        if(!todayElement) return;
+
+        //Set color and update line
+        todayElement.style.backgroundColor = CONFIG.mitstudie.colors.current_day_color;
+        updateLine(todayElement);
     }
 
     let timetableHeight = 0;
